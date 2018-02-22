@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>源生的ajax代码</title>
+		<script src="js/jquery3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+		<input type="button" name="" id="ask" value="请求" />
+		<div id="aq">请求成功之前</div>
+	<body>
+		<script type="text/javascript">
+			var ask=document.getElementById("ask");
+			ask.onclick=function(){
+				//创建xmlhttprequest对象
+				var xmlhr;
+				if(XMLHttpRequest){
+					//FF
+					var xmlhr=new XMLHttpRequest;
+				}else{
+					//IE
+					var xmlhr=new ActiveXObject("Microsoft","XMLHttp");
+				}
+				//连接数据库 
+				xmlhr.open("GET","me.txt",true);
+				//发送请求
+				xmlhr.send();
+				//接收数据
+				xmlhr.onreadystatechange=function(){
+					if(xmlhr.readyState==4){
+						if(xmlhr.status==200){
+							document.getElementById("aq").innerHTML=xmlhr.responseText;
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>
